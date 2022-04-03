@@ -1,6 +1,6 @@
-import { IGitUsers } from "../interfaces/IGitUsers";
+import { IGitUsers } from "../../interfaces/IGitUsers";
 import Spinner from "react-bootstrap/Spinner";
-import ResultsCard from "./resultsCard";
+import ResultsCard from "../resultsCard";
 
 interface ResultListProps {
   searchResults: IGitUsers[] | [];

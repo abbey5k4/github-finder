@@ -6,7 +6,7 @@
   flex-wrap: wrap;
   border: 1px solid black;
   border-radius: 20px;
-  z-index: 500;
+  /* z-index: 500; */
 }
 
 .team .team_member {
@@ -54,6 +54,41 @@
   border-radius: 50%;
 }
 
+.team {
+    position: relative;
+}
+
+.team:hover .hideText {
+    width: 100%;
+    height: 50%;
+    left: 0;
+    bottom: 0;
+}
+
 .team .hideText {
-    z-index: 200;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100px;
+    /* padding: 12px; */
+    background: #fff;
+    transition: all 0.5s cubic-bezier(.48, -0.28, 0.41, 1.4);
+    /* box-sizing: border-box; */
+    overflow: hidden;
+}
+
+.hideText p {
+    margin: 10px 0 0;
+    /* padding: 1em 1em; */
+    transform: translateY(2em);
+    line-height: 1.2em;
+    transition: 0.3s;
+    text-align: center;
+    opacity: 0;
+}
+
+.team:hover .hideText p {
+    transform: translateY(0);
+    opacity: 1;
 }

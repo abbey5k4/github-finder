@@ -62,7 +62,7 @@ const PaginationComponent = ({
     paginate(num);
   };
   return (
-    <div className={classes.root}>
+    <div className={`classes.root py-5 text-center`}>
       {pageNumbers.map((number, i) => (
         <ButtonGroup
           size="small"

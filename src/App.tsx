@@ -1,24 +1,25 @@
 import axios, { AxiosResponse } from "axios";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import "./App.css";
 import "antd/dist/antd.css";
 import { IGitUsers } from "./interfaces/IGitUsers";
 import "bootstrap/dist/css/bootstrap.min.css";
-import ResultsList from "./resultsList/resultsList";
-import PaginationComponent from "./resultsList/pagination";
-import ReactPaginate from "react-paginate";
+import ResultsList from "./components/resultsList";
+import PaginationComponent from "./components/pagination";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
   const [searchResults, setSearchResults] = useState<IGitUsers[] | []>([]);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [postsPerPage] = useState(10);
 
   const runSearch = async (event: React.SyntheticEvent<EventTarget>) => {
     event.preventDefault();
     setLoading(true);
     await axios
       .get<AxiosResponse>(
-        `https://api.github.com/search/users?q=${searchTerm}&page=1`
+        `https://api.github.com/search/users?q=${searchTerm}&page=${currentPage}`
       )
       .then((response: any) => {
         console.log(response.data.items);
@@ -31,18 +32,14 @@ function App() {
       });
   };
 
-  const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
-
   // Get current posts
-  const indexOfLastPost = currentPage * postsPerPage;
-  const indexOfFirstPost = indexOfLastPost - postsPerPage;
-  const currentPosts = searchResults.slice(indexOfFirstPost, indexOfLastPost);
+  const indexOfLastPage = currentPage * postsPerPage;
+  const indexOfFirstPage = indexOfLastPage - postsPerPage;
+  const currentPosts = searchResults.slice(indexOfFirstPage, indexOfLastPage);
 
   // Change page
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
-  console.log(searchResults);
   return (
     <div className="container">
       <h4 className="text-center">GitHub finder</h4>
