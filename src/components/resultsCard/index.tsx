@@ -6,7 +6,6 @@ type ResultCardProps = {
 };
 
 const ResultsCard = ({ results }: ResultCardProps) => {
-  // console.log(results);
   return (
     <div className="team">
       <div className="team_member">
@@ -15,7 +14,7 @@ const ResultsCard = ({ results }: ResultCardProps) => {
         </div>
         <div className="hideText">
           <h3>{results.login}</h3>
-          <p>{results.html_url}</p>
+          <p>{results.html_url.substr(0, 25) + '...'}</p>
           <p>{results.score}</p>
         </div>
       </div>

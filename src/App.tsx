@@ -1,7 +1,8 @@
 import axios, { AxiosResponse } from "axios";
 import React, { useState } from "react";
 import "./App.css";
-import "antd/dist/antd.css";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import { IGitUsers } from "./interfaces/IGitUsers";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ResultsList from "./components/resultsList";
@@ -22,12 +23,13 @@ function App() {
         `https://api.github.com/search/users?q=${searchTerm}&page=${currentPage}`
       )
       .then((response: any) => {
-        console.log(response.data.items);
         setSearchResults(response.data.items);
         setLoading(false);
       })
       .catch((error) => {
-        console.log(error.response);
+        toast.error("Please enter a correct input and press enter to search", {
+          position: toast.POSITION.TOP_RIGHT,
+        });
         setLoading(false);
       });
   };
@@ -42,14 +44,17 @@ function App() {
 
   return (
     <div className="container">
+      <ToastContainer />
       <h4 className="text-center">GitHub finder</h4>
       <form className="search-div form-group" onSubmit={runSearch}>
         <input
           value={searchTerm}
           onChange={(event) => setSearchTerm(event.target.value)}
           className="form-control"
+          placeholder="Enter a keyword and press enter to search..."
         />
       </form>
+
       <ResultsList searchResults={currentPosts} loading={loading} />
       {searchResults.length ? (
         <PaginationComponent
