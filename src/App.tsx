@@ -49,7 +49,7 @@ function App() {
   const paginate = (pageNumber: number) => setCurrentPage(pageNumber);
 
   return (
-    <div className="container my-3">
+    <div className="App-style container my-3">
       <ToastContainer />
       <BackTop>
         <div className="bttop">

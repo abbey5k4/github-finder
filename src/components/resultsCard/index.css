@@ -93,3 +93,7 @@
     transform: translateY(0);
     opacity: 1;
 }
+
+.font-small {
+  font-size: 12px;
+}
