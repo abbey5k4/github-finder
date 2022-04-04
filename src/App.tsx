@@ -1,5 +1,6 @@
 import axios, { AxiosResponse } from "axios";
 import React, { useState } from "react";
+import "antd/dist/antd.css";
 import "./App.css";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
@@ -7,13 +8,15 @@ import { IGitUsers } from "./interfaces/IGitUsers";
 import "bootstrap/dist/css/bootstrap.min.css";
 import ResultsList from "./components/resultsList";
 import PaginationComponent from "./components/pagination";
+import { BackTop } from "antd";
+import { BsArrowUp } from "react-icons/bs";
 
 function App() {
   const [searchTerm, setSearchTerm] = useState("");
   const [loading, setLoading] = useState(false);
   const [searchResults, setSearchResults] = useState<IGitUsers[] | []>([]);
   const [currentPage, setCurrentPage] = useState(1);
-  const [postsPerPage] = useState(10);
+  const [postsPerPage] = useState(20);
 
   const runSearch = async (event: React.SyntheticEvent<EventTarget>) => {
     event.preventDefault();
@@ -45,6 +48,7 @@ function App() {
   return (
     <div className="container">
       <ToastContainer />
+      
       <h4 className="text-center">GitHub finder</h4>
       <form className="search-div form-group" onSubmit={runSearch}>
         <input
@@ -65,6 +69,11 @@ function App() {
       ) : (
         ""
       )}
+      <BackTop>
+        <div className="bttop">
+          <BsArrowUp />
+        </div>
+      </BackTop>
     </div>
   );
 }

@@ -15,7 +15,7 @@ const ResultsCard = ({ results }: ResultCardProps) => {
         <div className="hideText">
           <h3>{results.login}</h3>
           <p>{results.html_url.substr(0, 25) + '...'}</p>
-          <p>{results.score}</p>
+          <p>{`${results.score}.0`}</p>
         </div>
       </div>
     </div>

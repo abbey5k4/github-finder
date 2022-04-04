@@ -36,3 +36,20 @@
     transform: rotate(360deg);
   }
 }
+
+.bttop {
+  height: 40px;
+  padding: 10px 0;
+  width: 40px;
+  line-height: 40px;
+  border-radius: 4px;
+  background-color: #1d2c7e;
+  color: #fff;
+  text-align: center;
+  font-size: 14px;
+  border: 1px solid #fff;
+}
+
+.bttop svg {
+  font-size: 30px;
+}
